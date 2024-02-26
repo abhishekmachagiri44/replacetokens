@@ -8,7 +8,7 @@ env:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     
     steps:
     - uses: actions/checkout@v4
@@ -16,9 +16,15 @@ jobs:
     #   run: find *.xml -type f -exec sed -i ''s/#{CString}#/${{ secrets.CString }}/g'' {} \;
     # - name: Bash - Show XML Contents
     #   run: cat Example.xml
-    - name: Find and Replace User Name - Using Build Variable
-      run: find *.json -type f -exec sed -i ''s/#{UName}#/${{ env.USER_NAME }}/g'' {} \;
-    - name: Find and Replace Password - Using Build Variable
-      run: find *.json -type f -exec sed -i ''s/#{PWord}#/${{ secrets.PWord }}/g'' {} \;
+    - name: Replace User Name and Password - Using Build Variable
+      # run: find *.json -type f -exec sed -i ''s/#{UName}#/${{ env.USER_NAME }}/g'' {} \;
+    - run: |
+            Get-ChildItem -Filter *.json | ForEach-Object {
+                $content = Get-Content $_.FullName
+                $content = $content -replace '#{PWord}#', "${{ secrets.PWord }}" -replace '#{UName}#', "${{ env.USER_NAME }}"
+                $content | Set-Content $_.FullName
+            }
+    # - name: Find and Replace Password - Using Build Variable
+    #   run: find *.json -type f -exec sed -i ''s/#{PWord}#/${{ secrets.PWord }}/g'' {} \;
     - name: Bash - Show JSON Contents
-      run: cat Example.json
+      run: Get-Content Example.json
