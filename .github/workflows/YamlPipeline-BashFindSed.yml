@@ -1,30 +1,26 @@
 name: CI
 
-on: [workflow_dispatch]
+on:
+  workflow_dispatch:
 
 env:
   USER_NAME: "mask"
 
 jobs:
   build:
-
     runs-on: windows-latest
     
     steps:
-    - uses: actions/checkout@v4
-    # - name: Find and Replace - Using Secrets
-    #   run: find *.xml -type f -exec sed -i ''s/#{CString}#/${{ secrets.CString }}/g'' {} \;
-    # - name: Bash - Show XML Contents
-    #   run: cat Example.xml
-    - name: Replace User Name and Password - Using Build Variable
-      # run: find *.json -type f -exec sed -i ''s/#{UName}#/${{ env.USER_NAME }}/g'' {} \;
-    - run: |
-            Get-ChildItem -Filter *.json | ForEach-Object {
-                $content = Get-Content $_.FullName
-                $content = $content -replace '#{PWord}#', "${{ secrets.PWord }}" -replace '#{UName}#', "${{ env.USER_NAME }}"
-                $content | Set-Content $_.FullName
-            }
-    # - name: Find and Replace Password - Using Build Variable
-    #   run: find *.json -type f -exec sed -i ''s/#{PWord}#/${{ secrets.PWord }}/g'' {} \;
-    - name: Bash - Show JSON Contents
-      run: Get-Content Example.json
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Replace User Name and Password
+        run: |
+          Get-ChildItem -Filter *.json | ForEach-Object {
+              $content = Get-Content $_.FullName
+              $content = $content -replace '#{PWord}#', "${{ secrets.PWord }}" -replace '#{UName}#', "${{ env.USER_NAME }}"
+              $content | Set-Content $_.FullName
+          }
+
+      - name: Show JSON Contents
+        run: Get-Content Example.json
