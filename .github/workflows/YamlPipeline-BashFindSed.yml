@@ -3,7 +3,7 @@ name: CI
 on: [workflow_dispatch]
 
 env:
-  USER_NAME: "ThisIsAUserName"
+  USER_NAME: "mask"
 
 jobs:
   build:
@@ -11,11 +11,11 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-    - uses: actions/checkout@v1
-    - name: Find and Replace - Using Secrets
-      run: find *.xml -type f -exec sed -i ''s/#{CString}#/${{ secrets.CString }}/g'' {} \;
-    - name: Bash - Show XML Contents
-      run: cat Example.xml
+    - uses: actions/checkout@v4
+    # - name: Find and Replace - Using Secrets
+    #   run: find *.xml -type f -exec sed -i ''s/#{CString}#/${{ secrets.CString }}/g'' {} \;
+    # - name: Bash - Show XML Contents
+    #   run: cat Example.xml
     - name: Find and Replace User Name - Using Build Variable
       run: find *.json -type f -exec sed -i ''s/#{UName}#/${{ env.USER_NAME }}/g'' {} \;
     - name: Find and Replace Password - Using Build Variable
