@@ -39,4 +39,4 @@ jobs:
       #     }
 
       - name: Show JSON Contents
-        run: Get-Content Example.json
+        run: Get-Content Example.js
