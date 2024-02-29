@@ -46,4 +46,4 @@ jobs:
       #     }
 
       - name: Show JSON Contents
-        run: Get-Content Example.js
+        run: cat Example.js
