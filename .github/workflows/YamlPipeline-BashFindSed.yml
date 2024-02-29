@@ -21,12 +21,21 @@ jobs:
       #     userName: "${{ env.USER_NAME }}"
       #     password: "${{ secrets.PWord }}"
 
-      - name: Find and Replace
-        uses: jacobtomlinson/gha-find-replace@v3
+      # - name: Find and Replace
+      #   uses: jacobtomlinson/gha-find-replace@v3
+      #   with:
+      #     find: "userName"
+      #     replace: "${{ env.USER_NAME }}"
+      #     include: "*.js"
+
+      - uses: cschleiden/replace-tokens@v1
+        env:
+          userName: ${{ env.USER_NAME }}
+          password: ${{ secrets.PWord }}
         with:
-          find: "userName"
-          replace: "${{ env.USER_NAME }}"
-          include: "*.js"
+          tokenPrefix: '#{'
+          tokenSuffix: '}#'
+          files: '["*.js"]'
 
       # - name: Replace User Name and Password
       #   run: |
