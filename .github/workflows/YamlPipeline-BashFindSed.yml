@@ -28,14 +28,14 @@ jobs:
       #     replace: "${{ env.USER_NAME }}"
       #     include: "*.js"
 
-      - uses: cschleiden/replace-tokens@v1
+      - uses: cschleiden/replace-tokens@v1.3
         env:
           userName: ${{ env.USER_NAME }}
           password: ${{ secrets.PWord }}
         with:
           tokenPrefix: '#{'
           tokenSuffix: '}#'
-          files: '["*.js"]'
+          files: '["*.json"]'
 
       # - name: Replace User Name and Password
       #   run: |
@@ -55,4 +55,4 @@ jobs:
       #     }
 
       - name: Show JSON Contents
-        run: cat Example.js
+        run: cat Example.json
