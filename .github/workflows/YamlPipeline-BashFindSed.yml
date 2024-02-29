@@ -16,7 +16,7 @@ jobs:
 
       - uses: cschleiden/replace-tokens@v1
         with:
-          files: '["**/*.json"]'
+          files: '["Example.json"]'
         env:
           userName: "${{ env.USER_NAME }}"
           password: "${{ secrets.PWord }}"
