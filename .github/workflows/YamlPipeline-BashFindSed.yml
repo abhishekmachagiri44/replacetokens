@@ -17,10 +17,19 @@ jobs:
       - name: Replace User Name and Password
         run: |
           Get-ChildItem -Filter *.json | ForEach-Object {
-              $content = Get-Content $_.FullName
-              $content = $content -replace '#{PWord}#', "${{ secrets.PWord }}" -replace '#{UName}#', "${{ env.USER_NAME }}"
-              $content | Set-Content $_.FullName
+              $content = Get-Content $_.FullName | Out-String | ConvertFrom-Json
+              $content.password = "${{ secrets.PWord }}"
+              $content.userName = "${{ env.USER_NAME }}"
+              $content | ConvertTo-Json | Set-Content $_.FullName
           }
+
+      # - name: Replace User Name and Password
+      #   run: |
+      #     Get-ChildItem -Filter *.json | ForEach-Object {
+      #         $content = Get-Content $_.FullName
+      #         $content = $content -replace '#{PWord}#', "${{ secrets.PWord }}" -replace '#{UName}#', "${{ env.USER_NAME }}"
+      #         $content | Set-Content $_.FullName
+      #     }
 
       - name: Show JSON Contents
         run: Get-Content Example.json
