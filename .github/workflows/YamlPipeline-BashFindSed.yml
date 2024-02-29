@@ -14,14 +14,21 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Replace User Name and Password
-        run: |
-          Get-ChildItem -Filter *.json | ForEach-Object {
-              $content = Get-Content $_.FullName | Out-String | ConvertFrom-Json
-              $content.password = "${{ secrets.PWord }}"
-              $content.userName = "${{ env.USER_NAME }}"
-              $content | ConvertTo-Json | Set-Content $_.FullName
-          }
+      - uses: cschleiden/replace-tokens@v1
+        with:
+          files: '["**/*.json"]'
+        env:
+          userName: "${{ env.USER_NAME }}"
+          password: "${{ secrets.PWord }}"
+
+      # - name: Replace User Name and Password
+      #   run: |
+      #     Get-ChildItem -Filter *.json | ForEach-Object {
+      #         $content = Get-Content $_.FullName | Out-String | ConvertFrom-Json
+      #         $content.password = "${{ secrets.PWord }}"
+      #         $content.userName = "${{ env.USER_NAME }}"
+      #         $content | ConvertTo-Json | Set-Content $_.FullName
+      #     }
 
       # - name: Replace User Name and Password
       #   run: |
