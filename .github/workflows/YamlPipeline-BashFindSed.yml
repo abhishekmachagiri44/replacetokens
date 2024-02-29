@@ -14,12 +14,19 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - uses: cschleiden/replace-tokens@v1
+      # - uses: cschleiden/replace-tokens@v1
+      #   with:
+      #     files: '["*.js"]'
+      #   env:
+      #     userName: "${{ env.USER_NAME }}"
+      #     password: "${{ secrets.PWord }}"
+
+      - name: Find and Replace
+        uses: jacobtomlinson/gha-find-replace@v3
         with:
-          files: '["*.js"]'
-        env:
-          userName: "${{ env.USER_NAME }}"
-          password: "${{ secrets.PWord }}"
+          find: "userName"
+          replace: "${{ env.USER_NAME }}"
+          include: "*.js"
 
       # - name: Replace User Name and Password
       #   run: |
