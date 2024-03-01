@@ -28,14 +28,23 @@ jobs:
       #     replace: "${{ env.USER_NAME }}"
       #     include: "*.js"
 
-      - uses: cschleiden/replace-tokens@v1.3
-        env:
-          userName: ${{ env.USER_NAME }}
-          password: ${{ secrets.PWord }}
+      # - uses: cschleiden/replace-tokens@v1.3
+      #   env:
+      #     userName: ${{ env.USER_NAME }}
+      #     password: ${{ secrets.PWord }}
+      #   with:
+      #     tokenPrefix: '#{'
+      #     tokenSuffix: '}#'
+      #     files: '["*.json"]'
+
+      - name: App Settings Variable Substitution
+        uses: microsoft/variable-substitution@v1
         with:
-          tokenPrefix: '#{'
-          tokenSuffix: '}#'
-          files: '["*.json"]'
+          files: 'Example.json'
+        env:
+          password: ${{ secrets.PWord }}
+          userName: ${{ env.USER_NAME }}
+
 
       # - name: Replace User Name and Password
       #   run: |
