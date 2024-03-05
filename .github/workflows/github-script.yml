@@ -21,6 +21,12 @@ jobs:
       #   with:
       #     repo-token: "${{ secrets.GH_TOKEN }}"
       #     tag: "0.02"
+      
+      - name: Set Dist Version
+        run: |
+          BUILD_NUMBER="${{ github.run_id }}-${{ github.run_number }}-${{ github.run_attempt }}"
+          echo "${BUILD_NUMBER}"
+    
       - name: Create tag
         uses: actions/github-script@v7
         with:
@@ -28,7 +34,7 @@ jobs:
             github.rest.git.createRef({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              ref: 'refs/tags/0.0.10',
+              ref: 'refs/tags/${BUILD_NUMBER}',
               sha: context.sha
             })
       # - name: Run latest-tag
