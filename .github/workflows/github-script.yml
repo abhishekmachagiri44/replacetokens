@@ -15,6 +15,11 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
+
+      - name: Extract branch name
+        run: echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_ENV
+        # id: extract_branch
+  
       # - name: Tag commit
       #   uses: tvdias/github-tagger@v0.0.2
       #   with:
@@ -40,7 +45,7 @@ jobs:
             github.rest.git.createRef({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              ref: 'refs/tags/${{ github.run_number }}-${{env.NOW}}',
+              ref: 'refs/tags/${{ github.run_number }}-${{env.NOW}}-${{env.branch}}',
               sha: context.sha
             })
       # - name: Run latest-tag
