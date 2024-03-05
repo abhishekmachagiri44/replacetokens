@@ -28,7 +28,7 @@ jobs:
             github.rest.git.createRef({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              ref: 'refs/tags/0.0.9',
+              ref: 'refs/tags/0.0.10',
               sha: context.sha
             })
       # - name: Run latest-tag
