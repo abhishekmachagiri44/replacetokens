@@ -23,7 +23,7 @@ jobs:
       # - name: Get result
       #   run: echo "${{steps.set-result.outputs.result}}"
       - name: Tag commit
-        uses: tvdias/github-tagger@v0.0.1
+        uses: tvdias/github-tagger@v0.0.2
         with:
-          # repo-token: "${{ secrets.GH_TOKEN }}"
+          repo-token: "${{ secrets.GH_TOKEN }}"
           tag: "0.01"
