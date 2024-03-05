@@ -63,10 +63,9 @@ jobs:
       #     # GITHUB_TOKEN: ${{ secrets.GH_TOKEN }} # if you don't want to set write permissions use a PAT token
       #     WITH_V: false
       
-      - name: "Version Bump"
-        uses: "phips28/gh-action-bump-version@master"
+      - name: Bump version and push tag
+        uses: hennejg/github-tag-action@v4.1.jh1
         with:
-          tag-prefix: 'V'
-          minor-wording:  'minor,Minor'
-          major-wording: 'major,Major'
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
  
