@@ -24,8 +24,8 @@ jobs:
       - name: Set Dist Version
         run: |
           BUILD_NUMBER="${{ github.run_id }}-${{ github.run_number }}-${{ github.run_attempt }}"
-          echo "BUILD_NUMBER=${{BUILD_NUMBER}}" >> $GITHUB_ENV
-          echo "${{env.BUILD_NUMBER}}"
+          echo "build_number=${{BUILD_NUMBER}}" >> $GITHUB_ENV
+          echo "${{env.build_number}}"
     
       - name: Create tag
         uses: actions/github-script@v7
@@ -34,7 +34,7 @@ jobs:
             github.rest.git.createRef({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              ref: 'refs/tags/${{env.BUILD_NUMBER}}',
+              ref: 'refs/tags/${{env.build_number}}',
               sha: context.sha
             })
       # - name: Run latest-tag
