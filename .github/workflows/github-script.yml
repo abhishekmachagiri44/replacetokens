@@ -26,4 +26,4 @@ jobs:
         uses: tvdias/github-tagger@v0.0.2
         with:
           repo-token: "${{ secrets.GH_TOKEN }}"
-          tag: "0.01"
+          tag: "0.02"
