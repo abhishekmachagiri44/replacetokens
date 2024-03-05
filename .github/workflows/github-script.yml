@@ -62,3 +62,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }} # if you don't want to set write permissions use a PAT token
           WITH_V: false
+ 
