@@ -15,15 +15,14 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
-      # - uses: actions/github-script@v7
-      #   id: set-result
+      # - name: Tag commit
+      #   uses: tvdias/github-tagger@v0.0.2
       #   with:
-      #     script: return "Hello!"
-      #     result-encoding: string
-      # - name: Get result
-      #   run: echo "${{steps.set-result.outputs.result}}"
-      - name: Tag commit
-        uses: tvdias/github-tagger@v0.0.2
-        with:
-          repo-token: "${{ secrets.GH_TOKEN }}"
-          tag: "0.02"
+      #     repo-token: "${{ secrets.GH_TOKEN }}"
+      #     tag: "0.02"
+      - name: Set env
+        run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+      - name: Test
+        run: |
+          echo $RELEASE_VERSION
+          echo ${{ env.RELEASE_VERSION }}
