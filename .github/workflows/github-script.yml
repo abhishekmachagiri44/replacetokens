@@ -57,9 +57,16 @@ jobs:
       #   with:
       #     tag-name: 0.0.7
 
-      - name: Bump version and push tag
-        uses: anothrNick/github-tag-action@1.64.0 # Don't use @master or @v1 unless you're happy to test the latest version
-        env:
-          # GITHUB_TOKEN: ${{ secrets.GH_TOKEN }} # if you don't want to set write permissions use a PAT token
-          WITH_V: false
+      # - name: Bump version and push tag
+      #   uses: anothrNick/github-tag-action@1.64.0 # Don't use @master or @v1 unless you're happy to test the latest version
+      #   env:
+      #     # GITHUB_TOKEN: ${{ secrets.GH_TOKEN }} # if you don't want to set write permissions use a PAT token
+      #     WITH_V: false
+      
+      - name: "Version Bump"
+        uses: "phips28/gh-action-bump-version@master"
+        with:
+          tag-prefix: 'V'
+          minor-wording:  'minor,Minor'
+          major-wording: 'major,Major'
  
