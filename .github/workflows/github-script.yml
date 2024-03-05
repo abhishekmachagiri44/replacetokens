@@ -31,6 +31,7 @@ jobs:
           # echo "BUILD_NUMBER=$build_number" >> $GITHUB_ENV
           time_stamp="$(date +'%Y.%m.%d')"
           echo "NOW=$time_stamp" >> $GITHUB_ENV
+          echo "${{ github.ref_name }}"
           
       # - name: Set TIME
       #   run: |
