@@ -15,9 +15,9 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Extract branch name
-        run: echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_ENV
-        # id: extract_branch
+      # - name: Extract branch name
+      #   run: echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_ENV
+      #   # id: extract_branch
   
       # - name: Tag commit
       #   uses: tvdias/github-tagger@v0.0.2
@@ -33,6 +33,10 @@ jobs:
           echo "NOW=$time_stamp" >> $GITHUB_ENV
           echo "${{ github.ref_name }}"
           
+      - name: Set outputs
+        id: vars
+        run: echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
+          
       # - name: Set TIME
       #   run: |
       #     echo "NOW=$(date +'%Y.%m.%d')" >> $GITHUB_ENV
@@ -45,7 +49,7 @@ jobs:
             github.rest.git.createRef({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              ref: 'refs/tags/${{ github.run_number }}-${{env.NOW}}-${{env.branch}}',
+              ref: 'refs/tags/${{ github.run_number }}-${{env.NOW}}-${{ env.sha_short }}',
               sha: context.sha
             })
       # - name: Run latest-tag
