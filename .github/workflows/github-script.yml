@@ -25,11 +25,13 @@ jobs:
         run: |
           build_number="${{ github.run_id }}-${{ github.run_number }}-${{ github.run_attempt }}"
           echo "BUILD_NUMBER=$build_number" >> $GITHUB_ENV
+          time_stamp="$(date +'%Y.%m.%d')"
+          echo "NOW=$time_stamp" >> $GITHUB_ENV
           
-      - name: Set TIME
-        run: |
-          echo "NOW=$(date +'%Y.%m.%d')" >> $GITHUB_ENV
-          echo "${{env.NOW}}"
+      # - name: Set TIME
+      #   run: |
+      #     echo "NOW=$(date +'%Y.%m.%d')" >> $GITHUB_ENV
+      #     echo "${{env.NOW}}"
     
       - name: Create tag
         uses: actions/github-script@v7
