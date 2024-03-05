@@ -1,4 +1,3 @@
-
 name: github-script
 
 on:
@@ -10,14 +9,14 @@ env:
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     permissions: write-all
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
 
       - name: Extract branch name
-        run: echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> GITHUB_ENV
+        run: echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_ENV
         # id: extract_branch
   
       # - name: Tag commit
@@ -29,9 +28,9 @@ jobs:
       - name: Set Dist Version
         run: |
           # build_number="${{ github.run_id }}-${{ github.run_number }}-${{ github.run_attempt }}"
-          # echo "BUILD_NUMBER=$build_number" >> GITHUB_ENV
+          # echo "BUILD_NUMBER=$build_number" >> $GITHUB_ENV
           time_stamp="$(date +'%Y.%m.%d')"
-          echo "NOW=$time_stamp" >> GITHUB_ENV
+          echo "NOW=$time_stamp" >> $GITHUB_ENV
           
       # - name: Set TIME
       #   run: |
