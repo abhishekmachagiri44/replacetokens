@@ -10,7 +10,7 @@ env:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     
     steps:
       - name: Checkout Code
@@ -25,5 +25,5 @@ jobs:
       - name: Tag commit
         uses: tvdias/github-tagger@v0.0.1
         with:
-          repo-token: "${{ secrets.GH_TOKEN }}"
+          # repo-token: "${{ secrets.GH_TOKEN }}"
           tag: "0.01"
