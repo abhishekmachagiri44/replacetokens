@@ -129,22 +129,9 @@ jobs:
       #     GITHUB_TOKEN: ${{ secrets.GH_TOKEN }} # if you don't want to set write permissions use a PAT token
       #     WITH_V: false
 
-      - uses: paulhatch/semantic-version@v5.3.0
-        id: tag_version
-        with:
-          # The prefix to use to identify tags
-          tag_prefix: "v"
-          # A string which, if present in a git commit, indicates that a change represents a
-          # major (breaking) change, supports regular expressions wrapped with '/'
-          major_pattern: "(MAJOR)"
-          # A string which indicates the flags used by the `major_pattern` regular expression. Supported flags: idgs
-          major_regexp_flags: ""
-          # Same as above except indicating a minor change, supports regular expressions wrapped with '/'
-          minor_pattern: "(MINOR)"
-          # A string which indicates the flags used by the `minor_pattern` regular expression. Supported flags: idgs
-          minor_regexp_flags: ""
-          # A string to determine the format of the version output
-          version_format: "${major}.${minor}.${patch}-prerelease${increment}"
+      - name: Create Tag
+        id: create_tag
+        uses: jaywcjlove/create-tag-action@main
       
       # - name: Bump version and push tag
       #   uses: hennejg/github-tag-action@v4.3.1
@@ -196,13 +183,13 @@ jobs:
       #   uses: haya14busa/action-update-semver@v1.2.1
 
 
-      - name: Create tag
-        uses: actions/github-script@v7
-        with:
-          script: |
-            github.rest.git.createRef({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              ref: 'refs/tags/${{ steps.tag_version.outputs.version }}',
-              sha: context.sha
-            })
+      # - name: Create tag
+      #   uses: actions/github-script@v7
+      #   with:
+      #     script: |
+      #       github.rest.git.createRef({
+      #         owner: context.repo.owner,
+      #         repo: context.repo.repo,
+      #         ref: 'refs/tags/${{ steps.tag_version.outputs.version }}',
+      #         sha: context.sha
+      #       })
