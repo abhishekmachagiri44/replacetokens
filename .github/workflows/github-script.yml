@@ -115,13 +115,13 @@ jobs:
       #     github_token: ${{ secrets.GH_TOKEN }}
       #     dry_run: true
          
-      # - name: Git Semantic Version       
-      #   uses: PaulHatch/semantic-version@v5.4.0
-      #   with:
-      #     tag_prefix: "v"
-      #     major_pattern: "(MAJOR)"
-      #     minor_pattern: "(MINOR)"
-      #     version_format: "${major}.${minor}.${patch}"
+      - name: Git Semantic Version       
+        uses: PaulHatch/semantic-version@v5.4.0
+        with:
+          tag_prefix: "v"
+          major_pattern: "(MAJOR)"
+          minor_pattern: "(MINOR)"
+
       
       # - name: Bump version and push tag
       #   uses: hennejg/github-tag-action@v4.3.1
@@ -169,8 +169,8 @@ jobs:
       #     git tag 0.0.1 
       #     git push origin 0.0.1
 
-      - name: Update major/minor semver  
-        uses: haya14busa/action-update-semver@v1.2.1
+      # - name: Update major/minor semver  
+      #   uses: haya14busa/action-update-semver@v1.2.1
 
 
       # - name: Create tag
