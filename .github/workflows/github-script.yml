@@ -117,3 +117,6 @@ jobs:
          
       - name: Git Semantic Version       
         uses: PaulHatch/semantic-version@v5.4.0
+        with:
+          major_pattern: "major"
+          minor_pattern: "minor"
