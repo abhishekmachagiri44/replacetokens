@@ -102,7 +102,16 @@ jobs:
       #   with:
       #     tag: "${{ github.run_number }}"
       
-      - name: Updated related tags
-        uses: haya14busa/action-update-semver@v1.2.1
+      # - name: Updated related tags
+      #   uses: haya14busa/action-update-semver@v1.2.1
+      #   with:
+      #     tag: "${{ github.run_number }}"
+      
+      - name:  'Automated Version Bump'
+        uses:  'phips28/gh-action-bump-version@master'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         with:
-          tag: "${{ github.run_number }}"
+          minor-wording:  'add,Adds,new'
+          major-wording:  'MAJOR,cut-major'
+          patch-wording:  'patch,fixes'  
