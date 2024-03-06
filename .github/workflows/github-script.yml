@@ -115,8 +115,13 @@ jobs:
       #     github_token: ${{ secrets.GH_TOKEN }}
       #     dry_run: true
          
-      - name: Git Semantic Version       
-        uses: PaulHatch/semantic-version@v5.4.0
+      # - name: Git Semantic Version       
+      #   uses: PaulHatch/semantic-version@v5.4.0
+      #   with:
+      #     major_pattern: "major"
+      #     minor_pattern: "minor"
+      
+      - name: Bump version and push tag
+        uses: hennejg/github-tag-action@v4.1
         with:
-          major_pattern: "major"
-          minor_pattern: "minor"
+          github_token: ${{ secrets.GITHUB_TOKEN }}
