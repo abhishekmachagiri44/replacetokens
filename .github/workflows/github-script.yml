@@ -87,12 +87,8 @@ jobs:
       # - name: Autotag      
       #   uses: phish108/autotag-action@v1.1.64
 
-      - id: bump
-        uses: zwaldowski/match-label-action@v4
-        with:
-          allowed: major,minor,patch
-      - uses: zwaldowski/semver-release-action@v3
-        with:
-          bump: ${{ steps.bump.outputs.match }}
-          github_token: ${{ secrets.GH_TOKEN }}
+      - name: Auto tag         
+        uses: Klemensas/action-autotag@1.2.3
+
+
  
