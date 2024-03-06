@@ -109,7 +109,8 @@ jobs:
       
     
       - name: Bump version and push tag
-        uses: jessenich/tag-bump-action@v1.0.0
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          WITH_V: true
+        id: tag_version
+        uses: mathieudutour/github-tag-action@v6.1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          default: patch
