@@ -122,6 +122,4 @@ jobs:
       #     minor_pattern: "minor"
       
       - name: Bump version and push tag
-        uses: hennejg/github-tag-action@v4.1
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+        uses: hennejg/github-tag-action@v4.3.1
