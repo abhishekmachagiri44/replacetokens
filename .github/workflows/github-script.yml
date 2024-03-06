@@ -128,13 +128,18 @@ jobs:
       #   with:
       #     github_token: ${{ secrets.GH_TOKEN }}
       
-      # - name: Semantic Release
-      #   uses: cycjimmy/semantic-release-action@v4
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-      
-      - name: Release
+      - name: Semantic Release
+        id: tag_version
+        uses: cycjimmy/semantic-release-action@v4
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-        run: npx semantic-release
-
+      - name: Create tag
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.git.createRef({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: 'refs/tags/${{ steps.tag_version.outputs.new_release_version }}',
+              sha: context.sha
+            })
