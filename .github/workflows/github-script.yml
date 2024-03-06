@@ -130,6 +130,7 @@ jobs:
       #     WITH_V: false
 
       - uses: paulhatch/semantic-version@v5.3.0
+        id: tag_version
         with:
           # The prefix to use to identify tags
           tag_prefix: "v"
@@ -195,13 +196,13 @@ jobs:
       #   uses: haya14busa/action-update-semver@v1.2.1
 
 
-      # - name: Create tag
-      #   uses: actions/github-script@v7
-      #   with:
-      #     script: |
-      #       github.rest.git.createRef({
-      #         owner: context.repo.owner,
-      #         repo: context.repo.repo,
-      #         ref: 'refs/tags/${{ steps.tag_version.outputs.version }}',
-      #         sha: context.sha
-      #       })
+      - name: Create tag
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.git.createRef({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: 'refs/tags/${{ steps.tag_version.outputs.version }}',
+              sha: context.sha
+            })
