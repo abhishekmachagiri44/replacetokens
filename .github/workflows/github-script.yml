@@ -92,4 +92,9 @@ jobs:
         with:
           GITHUB_TOKEN: "${{ secrets.GH_TOKEN }}"
 
+      - name: Conventional Changelog Action
+        uses: TriPSs/conventional-changelog-action@v5.2.1
+        with:
+          github-token: ${{ secrets.GH_TOKEN }}
+
  
