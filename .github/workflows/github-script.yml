@@ -87,10 +87,10 @@ jobs:
       # - name: Autotag      
       #   uses: phish108/autotag-action@v1.1.64
 
-      - name: Auto tag         
-        uses: Klemensas/action-autotag@1.2.3
-        with:
-          GITHUB_TOKEN: "${{ secrets.GH_TOKEN }}"
+      # - name: Auto tag         
+      #   uses: Klemensas/action-autotag@1.2.3
+      #   with:
+      #     GITHUB_TOKEN: "${{ secrets.GH_TOKEN }}"
 
       - name: Conventional Changelog Action
         uses: TriPSs/conventional-changelog-action@v5.2.1
