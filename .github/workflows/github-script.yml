@@ -115,11 +115,7 @@ jobs:
       #     github_token: ${{ secrets.GH_TOKEN }}
       #     dry_run: true
       
-      - name:  'Automated Version Bump'
-        uses:  'phips28/gh-action-bump-version@v11.0.0'
+      - name: Bump version
+        uses: remorses/bump-version@v8
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          minor-wording:  'add,Adds,new'
-          major-wording:  'MAJOR,cut-major'
-          patch-wording:  'patch,fixes'  
+            GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
