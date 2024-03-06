@@ -99,4 +99,6 @@ jobs:
       
       - name: Create/Update tag    
         uses: rickstaa/action-create-tag@v1.7.2
+        with:
+          tag: "${{ github.run_number }}"
  
