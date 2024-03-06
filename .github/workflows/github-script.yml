@@ -115,13 +115,19 @@ jobs:
       #     github_token: ${{ secrets.GH_TOKEN }}
       #     dry_run: true
          
-      - name: Git Semantic Version 
-        id: tag_version
-        uses: PaulHatch/semantic-version@v5.4.0
-        with:
-          # tag_prefix: "v"
-          major_pattern: "MAJOR"
-          minor_pattern: "MINOR"
+      # - name: Git Semantic Version 
+      #   id: tag_version
+      #   uses: PaulHatch/semantic-version@v5.4.0
+      #   with:
+      #     # tag_prefix: "v"
+      #     major_pattern: "MAJOR"
+      #     minor_pattern: "MINOR"
+      
+      - name: Bump version and push tag
+        uses: anothrNick/github-tag-action@1.64.0 # Don't use @master or @v1 unless you're happy to test the latest version
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }} # if you don't want to set write permissions use a PAT token
+          WITH_V: false
 
       
       # - name: Bump version and push tag
@@ -174,13 +180,13 @@ jobs:
       #   uses: haya14busa/action-update-semver@v1.2.1
 
 
-      - name: Create tag
-        uses: actions/github-script@v7
-        with:
-          script: |
-            github.rest.git.createRef({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              ref: 'refs/tags/${{ steps.tag_version.outputs.version }}',
-              sha: context.sha
-            })
+      # - name: Create tag
+      #   uses: actions/github-script@v7
+      #   with:
+      #     script: |
+      #       github.rest.git.createRef({
+      #         owner: context.repo.owner,
+      #         repo: context.repo.repo,
+      #         ref: 'refs/tags/${{ steps.tag_version.outputs.version }}',
+      #         sha: context.sha
+      #       })
