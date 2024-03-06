@@ -107,12 +107,8 @@ jobs:
       #   with:
       #     tag: "${{ github.run_number }}"
       
-      
-      - name:  'Automated Version Bump'
-        uses:  'phips28/gh-action-bump-version@master'
+    
+      - name: Bump version and push tag
+        uses: wiktorj/github-tag-action@master
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-        with:
-          minor-wording:  'add,Adds,new'
-          major-wording:  'MAJOR,cut-major'
-          patch-wording:  'patch,fixes'  
