@@ -7,7 +7,7 @@ on:
 env:
   USER_NAME: "mask"
 
-jobs:
+jobs: 
   build:
     runs-on: windows-2019
     permissions: write-all
