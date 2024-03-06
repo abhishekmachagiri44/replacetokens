@@ -134,11 +134,13 @@ jobs:
       #     GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
       
       - name: Bump version and push tag
-        uses: Magikon/github-tag-action@v5.0.0
-        id: tag
-        env:
-          MAJOR: "BREAKING*CHANGE|*#major*"
-          MINOR: "*feat*|*#minor*"
-          PATCH: "*fix*|*chore*|*docs*|*update*|#patch"
-          FORCE: true
-          OVERWRITE: true
+        id: tag_version
+        uses: mathieudutour/github-tag-action@v6.1
+        with:
+          github_token: ${{ secrets.GH_TOKEN }}
+          create_annotated_tag: true
+          default_bump: patch
+          tag_prefix: v
+          release_branches: master
+          dry_run: false
+
