@@ -89,6 +89,7 @@ jobs:
 
       - name: Auto tag         
         uses: Klemensas/action-autotag@1.2.3
-
+        with:
+          GITHUB_TOKEN: "${{ secrets.GH_TOKEN }}"
 
  
