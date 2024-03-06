@@ -1,7 +1,7 @@
 name: github-script
 
 on:
-  workflow_dispatch: 
+  workflow_dispatch:  
   push:
  
 env:
