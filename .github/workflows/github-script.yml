@@ -114,8 +114,6 @@ jobs:
       #   with:
       #     github_token: ${{ secrets.GH_TOKEN }}
       #     dry_run: true
-      
-      - name: Bump version
-        uses: remorses/bump-version@v8
-        env:
-            GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+         
+      - name: Git Semantic Version       
+        uses: PaulHatch/semantic-version@v5.4.0
