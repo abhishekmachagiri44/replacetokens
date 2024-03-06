@@ -160,14 +160,17 @@ jobs:
       #       --generate-notes \
       #       --target "${{ github.sha }}"
 
-      - name: Update Major Tag
-        # env:
-        #   MAJOR: ${{ steps.version.outputs.major }}
-        run: |
-          git tag -d 0.0.1 || true
-          git push origin :refs/tags/0.0.1
-          git tag 0.0.1 
-          git push origin 0.0.1
+      # - name: Update Major Tag
+      #   # env:
+      #   #   MAJOR: ${{ steps.version.outputs.major }}
+      #   run: |
+      #     git tag -d 0.0.1 || true
+      #     git push origin :refs/tags/0.0.1
+      #     git tag 0.0.1 
+      #     git push origin 0.0.1
+
+      - name: Update major/minor semver  
+        uses: haya14busa/action-update-semver@v1.2.1
 
 
       # - name: Create tag
