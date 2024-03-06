@@ -82,4 +82,8 @@ jobs:
       #   with:
       #     tag: ${{ steps.tag_version.outputs.new_tag }}
       #     name: Release ${{ steps.tag_version.outputs.new_tag }}
+
+              
+      - name: Autotag      
+        uses: phish108/autotag-action@v1.1.64
  
