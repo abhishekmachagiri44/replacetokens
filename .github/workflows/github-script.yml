@@ -115,8 +115,11 @@ jobs:
       #     github_token: ${{ secrets.GH_TOKEN }}
       #     dry_run: true
       
-      - name: Bump version and push tag
-        uses: anothrNick/github-tag-action@1.36.0
+      - name:  'Automated Version Bump'
+        uses:  'phips28/gh-action-bump-version@v11.0.0'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          WITH_V: true
+        with:
+          minor-wording:  'add,Adds,new'
+          major-wording:  'MAJOR,cut-major'
+          patch-wording:  'patch,fixes'  
