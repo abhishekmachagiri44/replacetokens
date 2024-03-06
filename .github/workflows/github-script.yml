@@ -12,7 +12,7 @@ jobs:
     runs-on: windows-latest
     permissions: write-all
     steps:
-      - name: Checkout Code
+      - name: Checkout Code 
         uses: actions/checkout@v4
 
       # - name: Extract branch name
