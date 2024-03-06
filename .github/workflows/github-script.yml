@@ -97,8 +97,12 @@ jobs:
       #   with:
       #     github-token: ${{ secrets.GH_TOKEN }}
       
-      - name: Create/Update tag    
-        uses: rickstaa/action-create-tag@v1.7.2
+      # - name: Create/Update tag    
+      #   uses: rickstaa/action-create-tag@v1.7.2
+      #   with:
+      #     tag: "${{ github.run_number }}"
+      
+      - name: Updated related tags
+        uses: haya14busa/action-update-semver@v1.2.1
         with:
           tag: "${{ github.run_number }}"
- 
