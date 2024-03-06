@@ -149,8 +149,8 @@ jobs:
       #     release_name: Release ${{ steps.tag_version.outputs.new_tag }}
       #     body: ${{ steps.tag_version.outputs.changelog }}
       
-      - uses: jveldboom/action-conventional-versioning@v1
-        id: version
+      # - uses: jveldboom/action-conventional-versioning@v1
+      #   id: version
 
       # - name: Create GitHub Release
       #   env:
@@ -161,13 +161,13 @@ jobs:
       #       --target "${{ github.sha }}"
 
       - name: Update Major Tag
-        env:
-          MAJOR: ${{ steps.version.outputs.major }}
+        # env:
+        #   MAJOR: ${{ steps.version.outputs.major }}
         run: |
-          git tag -d ${MAJOR} || true
-          git push origin :refs/tags/${MAJOR}
-          git tag ${MAJOR} 
-          git push origin ${MAJOR}
+          git tag -d 0.0.1 || true
+          git push origin :refs/tags/0.0.1
+          git tag 0.0.1 
+          git push origin 0.0.1
 
 
       # - name: Create tag
