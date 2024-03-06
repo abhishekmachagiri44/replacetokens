@@ -185,7 +185,7 @@ jobs:
 
       # - name: Update Major Tag
       #   # env:
-      #   #   MAJOR: ${{ steps.version.outputs.major }}
+      #   #   MAJOR: ${{ steps.version.outputs.major }} 
       #   run: |
       #     git tag -d 0.0.1 || true
       #     git push origin :refs/tags/0.0.1
