@@ -143,6 +143,7 @@ jobs:
       #     github_token: ${{ secrets.GH_TOKEN }}
       
       - name: Bump version and push tag
+        if: github.event_name == 'workflow_dispatch'
         id: tag_version
         uses: mathieudutour/github-tag-action@v6.1
         with:
