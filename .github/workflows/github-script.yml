@@ -272,15 +272,21 @@ jobs:
       #   env:
       #     GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
 
-      - name: version
-        id: version
-        uses: flatherskevin/semver-action@1.0.13
-        with:
-          incrementLevel: patch
-          source: tags
+      # - name: version
+      #   id: version
+      #   uses: flatherskevin/semver-action@1.0.13
+      #   with:
+      #     incrementLevel: patch
+      #     source: tags
           
-      - name: Release
-        uses: softprops/action-gh-release@v1
+      # - name: Release
+      #   uses: softprops/action-gh-release@v1.4.0
+      #   with:
+      #     name: ${{ steps.version.outputs.nextVersion }}
+      #     tag_name: ${{ steps.version.outputs.nextVersion }}
+
+
+      - uses: undergroundwires/bump-everywhere@master
         with:
-          name: ${{ steps.version.outputs.nextVersion }}
-          tag_name: ${{ steps.version.outputs.nextVersion }}
+          commit-message: '**'
+          git-token: ${{ secrets.GH_TOKEN }}
