@@ -1,6 +1,6 @@
 ---
-page_type: sample
-languages: yaml
+page_type: sample code added
+languages: yaml 
 products: GitHub
 description: "This is a simple example of how to replace tokens in code on-the-fly with a GitHub build action."
 urlFragment: "https://github.com/microsoft/TokenReplace"
