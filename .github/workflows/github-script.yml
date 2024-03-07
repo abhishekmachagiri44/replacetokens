@@ -286,7 +286,7 @@ jobs:
       #     tag_name: ${{ steps.version.outputs.nextVersion }}
 
 
-      - uses: undergroundwires/bump-everywhere@master
+      - uses: undergroundwires/bump-everywhere@1.4.0
         with:
           commit-message: '**'
           git-token: ${{ secrets.GH_TOKEN }}
