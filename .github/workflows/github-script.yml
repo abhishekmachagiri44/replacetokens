@@ -13,7 +13,7 @@ env:
   
 jobs: 
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     permissions: write-all
     steps:
       - name: Checkout Code 
@@ -213,7 +213,12 @@ jobs:
       #   uses: hennejg/github-tag-action@v4.3.1
       #   with:
       #     github_token: ${{ secrets.GH_TOKEN }}
-      
+
+  Tags:
+    runs-on: ubuntu-latest
+    permissions: write-all
+    needs: build
+    steps:      
       - name: Bump version and push tag
         if: github.event_name == 'workflow_dispatch'
         uses: anothrNick/github-tag-action@1.64.0 # Don't use @master or @v1 unless you're happy to test the latest version
