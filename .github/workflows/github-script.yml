@@ -2,7 +2,7 @@ name: github-script
 
 on: 
   workflow_dispatch:  
-  # push:
+  push:
   
 env: 
   USER_NAME: "mask"
@@ -193,6 +193,7 @@ jobs:
       #         ref: 'refs/tags/${{ steps.tag_version.outputs.version }}',
       #         sha: context.sha
       #       })
+      
       - name: Create Release
         id: create_release
         uses: xaprier/actions-semver@latest
@@ -200,4 +201,4 @@ jobs:
           draft: false
           prerelease: false
           include-letter-v: true
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.GH_TOKEN }}
