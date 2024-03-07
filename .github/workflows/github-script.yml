@@ -266,8 +266,8 @@ jobs:
       #         sha: context.sha
       #       })
       
-      - name: Configure Semantic Release
-        run: echo '{"branches":[**],"plugins":["@semantic-release/commit-analyzer","@semantic-release/release-notes-generator","@semantic-release/github"]}' > .releaserc.json
+      # - name: Configure Semantic Release
+      #   run: echo '{"branches":[**],"plugins":["@semantic-release/commit-analyzer","@semantic-release/release-notes-generator","@semantic-release/github"]}' > .releaserc.json
         
       - name: Semantic Release
         uses: cycjimmy/semantic-release-action@v4.0.0
