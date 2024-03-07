@@ -254,3 +254,14 @@ jobs:
         run: echo "The new version is now $new_version"
         env:
           new_version: ${{ steps.increment-version.outputs.new-version }}
+          
+      - name: Create tag
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.git.createRef({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: 'refs/tags/${{ steps.increment-version.outputs.new-version }}',
+              sha: context.sha
+            })
