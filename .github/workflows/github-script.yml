@@ -286,26 +286,26 @@ jobs:
       #     tag_name: ${{ steps.version.outputs.nextVersion }}
 
 
-      - name: Bump version and push tag
-        uses: anothrNick/github-tag-action@1.64.0 # Don't use @master or @v1 unless you're happy to test the latest version
-        env:
-          DEFAULT_BUMP: patch
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }} # if you don't want to set write permissions use a PAT token
-          WITH_V: true 
-          TAG_CONTEXT: dev
-          INITIAL_VERSION: ${{ github.run_number }}
-
       # - name: Bump version and push tag
-      #   uses: Magikon/github-tag-action@5.0.0
-      #   id: tag
+      #   uses: anothrNick/github-tag-action@1.64.0 # Don't use @master or @v1 unless you're happy to test the latest version
       #   env:
       #     DEFAULT_BUMP: patch
-      #     PREFIX: ${{ github.run_number }}
-      #     MAJOR: "BREAKING*CHANGE|*#major*"
-      #     MINOR: "*feat*|*#minor*"
-      #     PATCH: "*fix*|*chore*|*docs*|*update*|#patch"
-      #     FORCE: true
-      #     OVERWRITE: true
+      #     GITHUB_TOKEN: ${{ secrets.GH_TOKEN }} # if you don't want to set write permissions use a PAT token
+      #     WITH_V: true 
+      #     TAG_CONTEXT: dev
+      #     INITIAL_VERSION: ${{ github.run_number }}
+
+      - name: Bump version and push tag
+        uses: Magikon/github-tag-action@5.0.0
+        id: tag
+        env:
+          DEFAULT_BUMP: patch
+          SUFFIX: ${{ github.run_number }}
+          MAJOR: "BREAKING*CHANGE|*#major*"
+          MINOR: "*feat*|*#minor*"
+          PATCH: "*fix*|*chore*|*docs*|*update*|#patch"
+          FORCE: true
+          OVERWRITE: true
 
       # - name: Bump version and push tag
       #   id: tag_version
