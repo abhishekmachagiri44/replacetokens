@@ -312,4 +312,5 @@ jobs:
         with:
           default_bump: patch
           github_token: ${{ secrets.GH_TOKEN }}
-          append_to_pre_release_tag: ${{ github.run_number }}
+          tag_prefix: v${{ github.run_number }}
+
