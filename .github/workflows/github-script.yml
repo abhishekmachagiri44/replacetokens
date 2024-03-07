@@ -215,7 +215,7 @@ jobs:
 
   Tags:
     runs-on: ubuntu-latest
-    if: github.event_name == 'workflow_dispatch'
+    # if: github.event_name == 'workflow_dispatch'
     # permissions: write-all
     # needs: build
     steps: 
@@ -230,4 +230,5 @@ jobs:
           DEFAULT_BUMP: patch
           WITH_V: true
           
-      - run: echo "${{ steps.tag_version.outputs.new_tag }}"
+      - name: echo tag
+        run: echo "${{ steps.tag_version.outputs.new_tag }}"
