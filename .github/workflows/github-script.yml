@@ -9,7 +9,7 @@ on:
       - '!v*'
 
 env: 
-  USER_NAME: "mask"
+  USER_NAME: "mask" 
   
 jobs: 
   build:
