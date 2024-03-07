@@ -194,11 +194,18 @@ jobs:
       #         sha: context.sha
       #       })
       
-      - name: Create Release
-        id: create_release
-        uses: xaprier/actions-semver@latest
+      # - name: Create Release
+      #   id: create_release
+      #   uses: xaprier/actions-semver@latest
+      #   with:
+      #     draft: false
+      #     prerelease: false
+      #     include-letter-v: true
+      #     token: ${{ secrets.GH_TOKEN }}
+      
+
+      - name: Bump version and push tag
+        uses: hennejg/github-tag-action@v4.3.1
         with:
-          draft: false
-          prerelease: false
-          include-letter-v: true
-          token: ${{ secrets.GH_TOKEN }}
+          github_token: ${{ secrets.GH_TOKEN }}
+
