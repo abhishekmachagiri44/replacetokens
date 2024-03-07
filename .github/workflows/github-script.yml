@@ -266,12 +266,11 @@ jobs:
       #         sha: context.sha
       #       })
       
+      - name: Configure Semantic Release
+        run: echo '{"branches":[**],"plugins":["@semantic-release/commit-analyzer","@semantic-release/release-notes-generator","@semantic-release/github"]}' > .releaserc.json
+        
       - name: Semantic Release
         uses: cycjimmy/semantic-release-action@v4.0.0
-        id: sema
-        with:
-          extra_plugins: |
-            @semantic-release/git
-            @semantic-release/exec
+        id: semantic
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
