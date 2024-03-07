@@ -218,7 +218,8 @@ jobs:
     runs-on: ubuntu-latest
     permissions: write-all
     needs: build
-    steps:      
+    steps: 
+      - uses: actions/checkout@v4
       - name: Bump version and push tag
         if: github.event_name == 'workflow_dispatch'
         uses: anothrNick/github-tag-action@1.64.0 # Don't use @master or @v1 unless you're happy to test the latest version
