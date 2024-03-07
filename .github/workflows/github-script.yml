@@ -271,5 +271,7 @@ jobs:
         id: semantic
         with:
           semantic_version: 16
+          extra_plugins: |
+            conventional-changelog-eslint
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
