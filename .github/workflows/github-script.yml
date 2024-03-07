@@ -265,12 +265,21 @@ jobs:
       #         ref: 'refs/tags/${{ steps.increment-version.outputs.new-version }}',
       #         sha: context.sha
       #       })
-      
-      # - name: Configure Semantic Release
-      #   run: echo '{"branches":[**],"plugins":["@semantic-release/commit-analyzer","@semantic-release/release-notes-generator","@semantic-release/github"]}' > .releaserc.json
-        
-      - name: Semantic Release
-        uses: cycjimmy/semantic-release-action@v4.0.0
-        id: semantic
-        env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+
+      # - name: Semantic Release
+      #   uses: cycjimmy/semantic-release-action@v4.0.0
+      #   id: semantic
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+
+      - name: version
+        id: version
+        uses: flatherskevin/semver-action@v1
+        with:
+          incrementLevel: patch
+          source: tags
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        with:
+          name: ${{ steps.version.outputs.nextVersion }}
+          tag_name: ${{ steps.version.outputs.nextVersion }}
