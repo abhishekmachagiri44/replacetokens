@@ -12,12 +12,12 @@ env:
   USER_NAME: "mask" 
   
 jobs:  
-  build:
-    runs-on: windows-latest
-    permissions: write-all
-    steps:
-      - name: Checkout Code 
-        uses: actions/checkout@v4
+  # build:
+  #   runs-on: windows-latest
+  #   permissions: write-all
+  #   steps:
+  #     - name: Checkout Code 
+  #       uses: actions/checkout@v4
 
       # - name: Extract branch name
       #   run: echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_ENV
