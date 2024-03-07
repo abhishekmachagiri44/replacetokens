@@ -312,5 +312,5 @@ jobs:
         with:
           default_bump: patch
           github_token: ${{ secrets.GH_TOKEN }}
-          tag_suffix: v${{ github.run_number }}-
+          tag_prefix: v${{ github.run_number }}-
 
