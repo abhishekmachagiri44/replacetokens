@@ -292,7 +292,8 @@ jobs:
           DEFAULT_BUMP: patch
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }} # if you don't want to set write permissions use a PAT token
           WITH_V: true 
-          TAG_CONTEXT: ${{ github.run_number }}
+          TAG_CONTEXT: dev
+          INITIAL_VERSION: ${{ github.run_number }}
 
       # - name: Bump version and push tag
       #   uses: Magikon/github-tag-action@5.0.0
