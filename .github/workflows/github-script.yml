@@ -294,7 +294,7 @@ jobs:
       #     PRERELEASE_SUFFIX: ${{ github.run_number }} 
 
       - name: Bump version and push tag
-        uses: Magikon/github-tag-action@v5.0.0
+        uses: Magikon/github-tag-action@5.0.0
         id: tag
         env:
           DEFAULT_BUMP: patch
