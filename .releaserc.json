@@ -1,5 +1,5 @@
 {
-  "branch": "main",
+  "branch": "*",
   "plugins": [
     [
       "@semantic-release/commit-analyzer",
@@ -17,31 +17,17 @@
       }
     ],
     [
-      "@semantic-release/release-notes-generator",
+      "@semantic-release/github",
       {
-        "preset": "eslint",
-        "releaseRules": [
-          { "tag": "Breaking", "release": "major" },
-          { "tag": "Build", "release": "minor" },
-          { "tag": "Chore", "release": "minor" },
-          { "tag": "Fix", "release": "patch" },
-          { "tag": "New", "release": "minor" },
-          { "tag": "Update", "release": "minor" },
-          { "tag": "Upgrade", "release": "minor" }
-        ]
+        "assets": ["package.json"],
+        "message": "chore(release): ${nextRelease.version} [skip ci]"
       }
     ],
     [
-      "@semantic-release/changelog",
+      "@semantic-release/git",
       {
-        "changelogFile": "CHANGELOG.md"
-      }
-    ],
-    "@semantic-release/github",
-    [
-      "@semantic-release/git", {
-        "assets": ["package.json", "CHANGELOG.md"],
-        "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+        "assets": ["package.json"],
+        "message": "chore(release): ${nextRelease.version} [skip ci]"
       }
     ]
   ]
