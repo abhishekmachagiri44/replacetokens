@@ -233,4 +233,4 @@ jobs:
           WITH_V: true
           
       - name: echo-tag
-        run: echo "${{ steps.tag_version.outputs.new_tag }}"
+        run: echo "${{ steps.tag_version.outputs.tag }}"
