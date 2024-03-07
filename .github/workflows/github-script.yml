@@ -220,7 +220,7 @@ jobs:
     # if: github.event_name == 'workflow_dispatch'
     # permissions: write-all
     # needs: build
-    steps: 
+    steps:  
       - name: checkout repo
         id: tag_version
         uses: actions/checkout@v4
