@@ -218,7 +218,8 @@ jobs:
   Tags:
     runs-on: ubuntu-latest
     # if: github.event_name == 'workflow_dispatch'
-    # permissions: write-all
+    concurrency: ci-${{ github.ref }}
+    permissions: write-all
     # needs: build
     steps:  
       - name: checkout repo
@@ -249,7 +250,7 @@ jobs:
       # Everything below here shows how you might use the results of the action...
 
       - name: Print if version changed
-        if: steps.increment-version.outputs.previous-version != steps.increment-version.outputs.new-version
+        # if: steps.increment-version.outputs.previous-version != steps.increment-version.outputs.new-version
         run: echo "The new version is now $new_version"
         env:
           new_version: ${{ steps.increment-version.outputs.new-version }}
