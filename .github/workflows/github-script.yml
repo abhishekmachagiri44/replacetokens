@@ -2,8 +2,8 @@ name: github-script
  
 on: 
   workflow_dispatch:  
-  push: 
-  
+  push:
+
 env: 
   USER_NAME: "mask"
   
@@ -209,4 +209,9 @@ jobs:
       #   uses: hennejg/github-tag-action@v4.3.1
       #   with:
       #     github_token: ${{ secrets.GH_TOKEN }}
-
+      
+      - name: Bump version and push tag
+        uses: ChloePlanet/github-tag-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          WITH_V: true
