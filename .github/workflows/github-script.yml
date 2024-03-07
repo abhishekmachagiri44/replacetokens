@@ -5,8 +5,8 @@ on:
   push:
     branches:
       - '**'
-    tags:
-      - '!v*'
+    # tags: 
+    #   - '!v*'
 
 env:  
   USER_NAME: "mask" 
