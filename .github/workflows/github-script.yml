@@ -3,8 +3,6 @@ name: github-script
 on:  
   workflow_dispatch:  
   push:  
-    branches: 
-      - '*'  
     # tags: 
     #   - '!v*' 
 
