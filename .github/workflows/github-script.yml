@@ -223,21 +223,33 @@ jobs:
     steps:  
       - name: checkout repo
         uses: actions/checkout@v4
-      - name: Minor version for each merge
-        id: taggerDryRun
-        uses: anothrNick/github-tag-action@1.67.0
-        env:
-          # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          WITH_V: true
-          DEFAULT_BUMP: patch
-          # DRY_RUN: true
+      # - name: Minor version for each merge
+      #   id: taggerDryRun
+      #   uses: anothrNick/github-tag-action@1.67.0
+      #   env:
+      #     # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #     WITH_V: true
+      #     DEFAULT_BUMP: patch
+      #     # DRY_RUN: true
   
-      - name: echo new tag
-        run: |
-          echo "The next tag version will be: ${{ steps.taggerDryRun.outputs.new_tag }}"
-      - name: echo tag
-        run: |
-          echo "The current tag is: ${{ steps.taggerDryRun.outputs.tag }}"
-      - name: echo part
-        run: |
-          echo "The version increment was: ${{ steps.taggerDryRun.outputs.part }}"
+      # - name: echo new tag
+      #   run: |
+      #     echo "The next tag version will be: ${{ steps.taggerDryRun.outputs.new_tag }}"
+      # - name: echo tag
+      #   run: |
+      #     echo "The current tag is: ${{ steps.taggerDryRun.outputs.tag }}"
+      # - name: echo part
+      #   run: |
+      #     echo "The version increment was: ${{ steps.taggerDryRun.outputs.part }}"
+
+      - name: Increment version
+        id: increment-version
+        uses: RichardInnocent/semantic-versioning-git@v0.0.2
+
+      # Everything below here shows how you might use the results of the action...
+
+      - name: Print if version changed
+        if: steps.increment-version.outputs.previous-version != steps.increment-version.outputs.new-version
+        run: echo "The new version is now $new_version"
+        env:
+          new_version: ${{ steps.increment-version.outputs.new-version }}
