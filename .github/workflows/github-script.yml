@@ -2,9 +2,11 @@ name: github-script
  
 on:  
   workflow_dispatch:  
-  push:  
-    # tags: 
-    #   - '!v*' 
+  push:
+    branches:
+      - '*'
+    tags:
+      - '!v*'
 
 env:  
   USER_NAME: "mask" 
