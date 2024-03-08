@@ -314,5 +314,5 @@ jobs:
         with:
           DRY_RUN: true
           default_bump: patch
-          # github_token: ${{ secrets.GH_TOKEN }}
+          github_token: ${{ secrets.GH_TOKEN }}
 
