@@ -292,7 +292,7 @@ jobs:
           DEFAULT_BUMP: patch
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }} # if you don't want to set write permissions use a PAT token
           WITH_V: true 
-          DRY_RUN: true
+          # DRY_RUN: true
           # TAG_CONTEXT: dev
           # INITIAL_VERSION: ${{ github.run_number }}
 
