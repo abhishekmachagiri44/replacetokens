@@ -218,9 +218,9 @@ jobs:
   Tags:
     runs-on: ubuntu-latest
     # if: github.event_name == 'workflow_dispatch'
-    concurrency: ci-${{ github.ref }}
-    permissions: write-all
-    # needs: build
+    # concurrency: ci-${{ github.ref }}
+    permissions:
+      contents: write
     steps:  
       - name: checkout repo
         uses: actions/checkout@v4
@@ -294,6 +294,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }} # if you don't want to set write permissions use a PAT token
           WITH_V: true 
           DRY_RUN: true
+          
       - name: Create tag
         uses: actions/github-script@v7
         with:
