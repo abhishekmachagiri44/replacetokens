@@ -220,7 +220,7 @@ jobs:
     # if: github.event_name == 'workflow_dispatch'
     # concurrency: ci-${{ github.ref }}
     permissions:
-       contents: write
+       actions: write
     steps:  
       - name: checkout repo
         uses: actions/checkout@v4
