@@ -219,8 +219,10 @@ jobs:
     runs-on: ubuntu-latest
     # if: github.event_name == 'workflow_dispatch'
     # concurrency: ci-${{ github.ref }}
-    permissions:
-       actions: write
+    # permissions:
+    #    actions: write
+    env:
+      GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
     steps:  
       - name: checkout repo
         uses: actions/checkout@v4
