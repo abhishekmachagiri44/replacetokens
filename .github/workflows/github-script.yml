@@ -348,9 +348,9 @@ jobs:
       #   with:
       #     bump_version_scheme: minor
 
-      - uses: rickstaa/action-create-tag@v1.7.2
-        id: "tag_create"
+      - name: Generate build number
+        uses: onyxmueller/build-tag-number@v1.0.3
         with:
-          tag: "latest"
-          tag_exists_error: false
-          message: "Latest release"
+          token: ${{secrets.GITHUB_TOKEN}        
+      - name: Print new build number
+        run: echo "Build number is $BUILD_NUMBER"
