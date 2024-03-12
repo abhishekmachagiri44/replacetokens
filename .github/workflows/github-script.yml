@@ -228,8 +228,7 @@ jobs:
     runs-on: ubuntu-latest
     # if: github.event_name == 'workflow_dispatch'
     # concurrency: ci-${{ github.ref }}
-    permissions:
-       contents:write
+    permissions: write-all
     # env:
     #   GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
     steps:  
