@@ -26,7 +26,7 @@ jobs:
       #   uses: tvdias/github-tagger@v0.0.2
       #   with:
       #     repo-token: "${{ secrets.GH_TOKEN }}"
-      #     tag: "0.02"
+      #     tag: "0.02" 
       
       # - name: Set Dist Version
       #   run: |
@@ -55,6 +55,7 @@ jobs:
       #         ref: 'refs/tags/${{ github.run_number }}-${{env.NOW}}-${{ env.sha_short }}',
       #         sha: context.sha
       #       })
+      
       # - name: Run latest-tag
       #   uses: EndBug/latest-tag@latest
       #   with:
@@ -385,4 +386,18 @@ jobs:
     #         ref: 'refs/tags/v${{ steps.version.outputs.version }}-${{ github.run_number }}',
     #         sha: context.sha
     #       })
-
+    
+      - uses: paulhatch/semantic-version@v5.3.0
+        with:
+          tag_prefix: "v"
+          # A string which, if present in a git commit, indicates that a change represents a
+          # major (breaking) change, supports regular expressions wrapped with '/'
+          major_pattern: "(MAJOR)"
+          # A string which indicates the flags used by the `major_pattern` regular expression. Supported flags: idgs
+          major_regexp_flags: ""
+          # Same as above except indicating a minor change, supports regular expressions wrapped with '/'
+          minor_pattern: "(MINOR)"
+          # A string which indicates the flags used by the `minor_pattern` regular expression. Supported flags: idgs
+          minor_regexp_flags: ""
+          # A string to determine the format of the version output
+          version_format: "${major}.${minor}.${patch}-${increment}"
