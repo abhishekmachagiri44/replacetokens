@@ -337,11 +337,18 @@ jobs:
       #   with:
       #     bump_version_scheme: minor
 
-      - name: Generate build number
-        # if: github.event_name == 'workflow_dispatch'
-        uses: onyxmueller/build-tag-number@v1.0.3   
-        with:
-          token: ${{ secrets.GH_TOKEN }}
+      # - name: Generate build number
+      #   # if: github.event_name == 'workflow_dispatch'
+      #   uses: onyxmueller/build-tag-number@v1.0.3   
+      #   with:
+      #     token: ${{ secrets.GH_TOKEN }}
           
-      - name: Print new build number
-        run: echo "Build number is ${env:BUILD_NUMBER}"
+      # - name: Print new build number
+      #   run: echo "Build number is ${env:BUILD_NUMBER}"
+
+      - name: Get next version
+        uses: reecetech/version-increment@2023.9.3
+        id: version
+        with:
+          scheme: semver
+          increment: patch
