@@ -217,7 +217,7 @@ jobs:
     
 
   Tags:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     # if: github.event_name == 'workflow_dispatch'
     # concurrency: ci-${{ github.ref }}
     permissions: write-all
@@ -347,7 +347,7 @@ jobs:
       #   run: echo "Build number is ${env:BUILD_NUMBER}"
 
       - name: Get next version
-        uses: reecetech/version-increment@2023.9.3
+        uses: reecetech/version-increment@2023.10.2
         id: version
         with:
           scheme: semver
