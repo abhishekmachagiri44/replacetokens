@@ -5,7 +5,7 @@ on:
       - '**'  
   workflow_dispatch:  
     inputs:
-      artifact-version:
+      artifact-version: 
         description: artifact version
         required: false
         type: string
