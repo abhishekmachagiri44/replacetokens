@@ -353,22 +353,27 @@ jobs:
       #     scheme: semver
       #     increment: patch
 
-      - name: Get next version
-        uses: reecetech/version-increment@2023.10.1
-        id: version
-        with:
-          use_api: true
-          
-      - name: Create tag
-        uses: actions/github-script@v7
-        with:
-          script: |
-            github.rest.git.createRef({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              ref: 'refs/tags/v${{ steps.version.outputs.version }}',
-              sha: context.sha
-            })
+    - name: Get next version
+      uses: reecetech/version-increment@2023.10.1
+      id: version
+      with:
+        use_api: true
+    
+    - name: Extract patch version
+      id: extract_patch
+      run: |
+        PATCH_VERSION=$(echo "${{ steps.version.outputs.version }}" | cut -d '.' -f 3)
+        echo "patch_version=${PATCH_VERSION}" >> $GITHUB_ENV
+    
+    - name: Create tag
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const patchVersion = process.env.patch_version;
+          github.rest.git.createRef({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            ref: 'refs/tags/v${{ env.patch_version }}',
+            sha: context.sha
+          })
 
-      - name: Check increment result
-        run: '[[ "$(date +%Y.%m)" == "$(echo "${{ steps.version.outputs.version }}" | cut -d "." -f 1-2)" ]]'
