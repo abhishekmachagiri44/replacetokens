@@ -9,7 +9,7 @@ on:
         description: artifact version
         required: false
         type: string 
-        default: 'patch'
+        default: 'patch' 
 jobs:  
   # build: 
   #   runs-on: windows-latest
@@ -215,7 +215,7 @@ jobs:
     
 
   Tags:
-    runs-on: ubuntu-latest
+    runs-on: window-latest
     # if: github.event_name == 'workflow_dispatch'
     # concurrency: ci-${{ github.ref }}
     permissions: write-all
@@ -321,7 +321,7 @@ jobs:
         uses: mathieudutour/github-tag-action@v6.2
         with:
           # DRY_RUN: true
-          default_bump: major  
+          default_bump: patch  
           github_token: ${{ secrets.GH_TOKEN }}
       
       # - name: Bump version and push tag
