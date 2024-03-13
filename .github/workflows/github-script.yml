@@ -387,11 +387,20 @@ jobs:
     #         sha: context.sha
     #       })
     
-      - uses: paulhatch/semantic-version@v5.4.0
+      - name: App Release
+        id: app-version
+        uses: PaulHatch/semantic-version@v5.4.0
         with:
-          tag_prefix: "v"
-          major_pattern: major
-          minor_pattern: minor
-          version_format: "${major}.${minor}.${patch}"
-          bump_each_commit: true
+          major_pattern: "BREAKING CHANGE:"
+          minor_pattern: "feat:"
+          # change_path: "src/app"
+          # search_commit_body: true
+
+      - name: Github Release
+        run: |
+          echo "App Version: ${{steps.app-version.outputs.version}}"
+          echo "App Tag: ${{steps.app-version.outputs.version_tag}}"
+          echo "App Changed: ${{steps.app-version.outputs.changed}}"
+          echo "App Authors: ${{steps.app-version.outputs.authors}}"
+
  
