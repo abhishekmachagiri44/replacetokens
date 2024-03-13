@@ -222,8 +222,8 @@ jobs:
     # concurrency: ci-${{ github.ref }}
     permissions: write-all
     steps:  
-      - name: checkout repo
-        uses: actions/checkout@v4
+      # - name: checkout repo
+      #   uses: actions/checkout@v4
       # - name: Minor version for each merge
       #   id: taggerDryRun
       #   uses: anothrNick/github-tag-action@1.67.0
@@ -346,9 +346,15 @@ jobs:
       # - name: Print new build number
       #   run: echo "Build number is ${env:BUILD_NUMBER}"
 
+      # - name: Get next version
+      #   uses: reecetech/version-increment@2023.10.2
+      #   id: version
+      #   with:
+      #     scheme: semver
+      #     increment: patch
+
       - name: Get next version
-        uses: reecetech/version-increment@2023.10.2
+        uses: reecetech/version-increment@2023.10.1
         id: version
         with:
-          scheme: semver
-          increment: patch
+          use_api: true
