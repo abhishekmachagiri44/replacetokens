@@ -321,7 +321,7 @@ jobs:
         uses: mathieudutour/github-tag-action@v6.2
         with:
           # DRY_RUN: true
-          default_bump: patch 
+          default_bump: patch  
           github_token: ${{ secrets.GH_TOKEN }}
       
       # - name: Bump version and push tag
