@@ -358,6 +358,9 @@ jobs:
       id: version
       with:
         use_api: true
+        scheme: semver
+        increment: minor
+
     
     - name: Extract patch version
       id: extract_patch
@@ -373,7 +376,7 @@ jobs:
           github.rest.git.createRef({
             owner: context.repo.owner,
             repo: context.repo.repo,
-            ref: 'refs/tags/v${{ env.patch_version }}',
+            ref: 'refs/tags/v${{ github.run_number }}-${{ env.patch_version }}',
             sha: context.sha
           })
 
