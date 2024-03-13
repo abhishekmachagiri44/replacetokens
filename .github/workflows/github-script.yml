@@ -215,7 +215,7 @@ jobs:
     
 
   Tags:
-    runs-on: window-latest
+    runs-on: windows-latest
     # if: github.event_name == 'workflow_dispatch'
     # concurrency: ci-${{ github.ref }}
     permissions: write-all
