@@ -358,3 +358,14 @@ jobs:
         id: version
         with:
           use_api: true
+          
+      - name: Create tag
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.git.createRef({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: 'refs/tags/v${{ steps.version.outputs.version }}',
+              sha: context.sha
+            })
