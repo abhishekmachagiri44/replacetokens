@@ -369,3 +369,6 @@ jobs:
               ref: 'refs/tags/v${{ steps.version.outputs.version }}',
               sha: context.sha
             })
+
+      - name: Check increment result
+        run: '[[ "$(date +%Y.%m)" == "$(echo "${{ steps.version.outputs.version }}" | cut -d "." -f 1-2)" ]]'
