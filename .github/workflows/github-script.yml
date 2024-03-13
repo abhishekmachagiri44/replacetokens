@@ -342,5 +342,6 @@ jobs:
         uses: onyxmueller/build-tag-number@v1.0.3   
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+          
       - name: Print new build number
-        run: echo "Build number is $BUILD_NUMBER"
+        run: echo "Build number is ${env:BUILD_NUMBER}"
