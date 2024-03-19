@@ -221,8 +221,8 @@ jobs:
     # concurrency: ci-${{ github.ref }}
     permissions: write-all
     steps:  
-      # - name: checkout repo
-      #   uses: actions/checkout@v4
+      - name: checkout repo
+        uses: actions/checkout@v4
       # - name: Minor version for each merge
       #   id: taggerDryRun
       #   uses: anothrNick/github-tag-action@1.67.0
